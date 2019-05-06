@@ -20,7 +20,8 @@ echo -e "#include <zephyr/types.h>\n" >> $DST_FILE
 
 for i in $@; do
 	SRC_FILE=$i
-	VAR_NAME=${SRC_FILE%%.*}
+	VAR_NAME=${SRC_FILE##*/}
+	VAR_NAME=${VAR_NAME%%.*}
 	VAR_TYPE=${VAR_NAME}_t
 
 	echo "static $VAR_TYPE $VAR_NAME = {" >> $DST_FILE
